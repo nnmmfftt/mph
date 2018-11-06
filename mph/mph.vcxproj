@@ -34,6 +34,29 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="allmakefile" />
+    <None Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lookupa.c" />
+    <ClCompile Include="perfect.c" />
+    <ClCompile Include="perfhex.c" />
+    <ClCompile Include="phash.c" />
+    <ClCompile Include="recycle.c" />
+    <ClCompile Include="testperf.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lookupa.h" />
+    <ClInclude Include="perfect.h" />
+    <ClInclude Include="phash.h" />
+    <ClInclude Include="recycle.h" />
+    <ClInclude Include="standard.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="samperf.txt" />
+    <Text Include="samperf2.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{125d07f7-2f16-4a32-a2e8-197dc22e9823}</ProjectGuid>
     <Keyword>Linux</Keyword>
@@ -74,29 +97,6 @@
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
-  <ItemGroup>
-    <None Include="..\..\..\..\Desktop\mph\allmakefile" />
-    <None Include="..\..\..\..\Desktop\mph\Makefile" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\Desktop\mph\lookupa.c" />
-    <ClCompile Include="..\..\..\..\Desktop\mph\perfect.c" />
-    <ClCompile Include="..\..\..\..\Desktop\mph\perfhex.c" />
-    <ClCompile Include="..\..\..\..\Desktop\mph\phash.c" />
-    <ClCompile Include="..\..\..\..\Desktop\mph\recycle.c" />
-    <ClCompile Include="..\..\..\..\Desktop\mph\testperf.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\Desktop\mph\lookupa.h" />
-    <ClInclude Include="..\..\..\..\Desktop\mph\perfect.h" />
-    <ClInclude Include="..\..\..\..\Desktop\mph\phash.h" />
-    <ClInclude Include="..\..\..\..\Desktop\mph\recycle.h" />
-    <ClInclude Include="..\..\..\..\Desktop\mph\standard.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\..\..\Desktop\mph\samperf.txt" />
-    <Text Include="..\..\..\..\Desktop\mph\samperf2.txt" />
-  </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
