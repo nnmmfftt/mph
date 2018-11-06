@@ -75,6 +75,27 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <None Include="..\..\..\..\Desktop\mph\allmakefile" />
+    <None Include="..\..\..\..\Desktop\mph\Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Desktop\mph\lookupa.c" />
+    <ClCompile Include="..\..\..\..\Desktop\mph\perfect.c" />
+    <ClCompile Include="..\..\..\..\Desktop\mph\perfhex.c" />
+    <ClCompile Include="..\..\..\..\Desktop\mph\phash.c" />
+    <ClCompile Include="..\..\..\..\Desktop\mph\recycle.c" />
+    <ClCompile Include="..\..\..\..\Desktop\mph\testperf.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Desktop\mph\lookupa.h" />
+    <ClInclude Include="..\..\..\..\Desktop\mph\perfect.h" />
+    <ClInclude Include="..\..\..\..\Desktop\mph\phash.h" />
+    <ClInclude Include="..\..\..\..\Desktop\mph\recycle.h" />
+    <ClInclude Include="..\..\..\..\Desktop\mph\standard.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\Desktop\mph\samperf.txt" />
+    <Text Include="..\..\..\..\Desktop\mph\samperf2.txt" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
