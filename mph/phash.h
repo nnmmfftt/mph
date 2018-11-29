@@ -1,4 +1,3 @@
-/* Perfect hash definitions */
 #ifndef STANDARD
 #include "standard.h"
 #endif /* STANDARD */

@@ -26,7 +26,7 @@ those pairs.
 #ifndef PERFECT
 #include "perfect.h"
 #endif
-
+#include<stdlib.h>
 /* 
  * Find a perfect hash when there is only one key.  Zero instructions.
  * Hint: the one key always hashes to 0
@@ -141,7 +141,7 @@ hashform *form;
     else
     {
       /* h3b: 0,3,2 */
-      sprintf(final->line[0], "  ub4 rsl = ((val & 3) ^ %d);\n",
+      sprintf(final->line[0], "  ub4 rsl = ((val & 3) ^ %ld);\n",
 	      find_adder(x,y,z));
     }
     return;

@@ -58,7 +58,8 @@ determined a perfect hash for the whole set of keys.
 #ifndef PERFECT
 #include "perfect.h"
 #endif
-
+#include<stdlib.h>
+#include<string.h>
 /*
 ------------------------------------------------------------------------------
 Find the mapping that will produce a perfect hash
@@ -127,7 +128,7 @@ hashform *form;
 	!memcmp(key1->name_k, key2->name_k, (size_t)key1->len_k))
     {
       fprintf(stderr, "perfect.c: Duplicates keys!  %.*s\n",
-	      key1->len_k, key1->name_k);
+	      (int)key1->len_k, key1->name_k);
       exit(SUCCESS);
     }
     break;
@@ -224,7 +225,7 @@ gencode  *final;                          /* output, code for the final hash */
     sprintf(final->line[2],
 	    "  checksum(key, len, state);\n");
     sprintf(final->line[3], 
-	    "  rsl = ((state[0]&0x%x)^scramble[tab[state[1]&0x%x]]);\n",
+	    "  rsl = ((state[0]&0x%lx)^scramble[tab[state[1]&0x%lx]]);\n",
 	    alen-1, blen-1);
   }
   else
@@ -247,16 +248,16 @@ gencode  *final;                          /* output, code for the final hash */
     }
     else if (mylog2(alen) == 0)
     {
-      sprintf(final->line[1], "  rsl = tab[val&0x%x];\n", blen-1);
+      sprintf(final->line[1], "  rsl = tab[val&0x%lx];\n", blen-1);
     }
     else if (blen < USE_SCRAMBLE)
     {
-      sprintf(final->line[1], "  rsl = ((val>>%ld)^tab[val&0x%x]);\n",
+      sprintf(final->line[1], "  rsl = ((val>>%ld)^tab[val&0x%lx]);\n",
 	      UB4BITS-mylog2(alen), blen-1);
     }
     else
     {
-      sprintf(final->line[1], "  rsl = ((val>>%ld)^scramble[tab[val&0x%x]]);\n",
+      sprintf(final->line[1], "  rsl = ((val>>%ld)^scramble[tab[val&0x%lx]]);\n",
 	      UB4BITS-mylog2(alen), blen-1);
     }
   }
@@ -428,7 +429,7 @@ int     rollback;          /* FALSE applies augmenting path, TRUE rolls back */
       else if (tabh[hash].key_h)
       {
 	/* very rare: roll back any changes */
-	(void *)apply(tabb, tabh, tabq, blen, scramble, tail, TRUE);
+	(void *)(long)apply(tabb, tabh, tabq, blen, scramble, tail, TRUE);
 	return FALSE;                                  /* failure, collision */
       }
       tabh[hash].key_h = mykey;
@@ -572,7 +573,7 @@ hashform *form;
 	if (!augment(tabb, tabh, tabq, blen, scramble, smax, &tabb[i], nkeys, 
 		     i+1, form))
 	{
-	  printf("fail to map group of size %ld for tab size %ld\n", j, blen);
+	  printf("fail to map group of size %lu for tab size %lu\n", j, blen);
 	  return FALSE;
 	}
 
@@ -934,7 +935,7 @@ hashform *form;                                           /* user directives */
 	  --trysalt;               /* we know this salt got distinct (A,B) */
 	}
 	else
-	{
+	{ 
 	  printf("fatal error: Cannot perfect hash: cannot build tab[]\n");
 	  exit(SUCCESS);
 	}
@@ -1109,7 +1110,7 @@ hashform *form;                                           /* user directives */
 
     if (blen < 16)
     {
-      for (i=0; i<blen; ++i) fprintf(f, "%3d,", scramble[tab[i].val_b]);
+      for (i=0; i<blen; ++i) fprintf(f, "%3ld,", scramble[tab[i].val_b]);
     }
     else if (blen <= 1024)
     {
@@ -1136,7 +1137,7 @@ hashform *form;                                           /* user directives */
     else 
     {
       for (i=0; i<blen; i+=16)
-	fprintf(f, "%ld,%ld,%ld,%ld,%ld,%ld,%ld,%ld,%ld,%ld,%ld,%ld,%ld,%ld,%ld,%ld,\n",
+	fprintf(f, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,\n",
 		tab[i+0].val_b, tab[i+1].val_b, 
 		tab[i+2].val_b, tab[i+3].val_b, 
 		tab[i+4].val_b, tab[i+5].val_b, 
@@ -1172,7 +1173,7 @@ hashform *form;                                           /* user directives */
   }
   fprintf(f, "{\n");
   for (i=0; i<final->used; ++i)
-    fprintf(f, final->line[i]);
+    fprintf(f,"%s", final->line[i]);
   fprintf(f, "  return rsl;\n");
   fprintf(f, "}\n");
   fprintf(f, "\n");

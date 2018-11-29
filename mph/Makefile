@@ -17,3 +17,10 @@ recycle.o : recycle.c standard.h recycle.h
 perfhex.o : perfhex.c standard.h lookupa.h recycle.h perfect.h
 
 perfect.o : perfect.c standard.h lookupa.h recycle.h perfect.h
+
+clean:
+	rm -f $(LIBRARY)
+	rm -rf $(CLEAN_FILES)
+	rm -rf $(LIBOUTPUT)
+	find $(SRC_PATH) -maxdepth 1 -name "*.[oda]*" -exec rm -f {} \;
+	find $(SRC_PATH) -maxdepth 1 -type f -regex ".*\.\(\(gcda\)\|\(gcno\)\)" -exec rm {} \;

@@ -1,5 +1,4 @@
-/* table for the mapping for the perfect hash */
-#ifndef STANDARD
+/*ifndef STANDARD
 #include "standard.h"
 #endif /* STANDARD */
 #ifndef PHASH

@@ -14,11 +14,13 @@ This also decreases memory fragmentation, and freeing structures
 */
 
 #ifndef STANDARD
-# include "standard.h"
+#include "standard.h"
 #endif
 #ifndef RECYCLE
 # include "recycle.h"
 #endif
+#include<stdlib.h>
+#include<memory.h>
 
 reroot *remkroot(size)
 size_t  size;
@@ -78,7 +80,7 @@ char   *purpose;
   char *x = (char *)malloc(len);
   if (!x)
   {
-    fprintf(stderr, "malloc of %d failed for %s\n", 
+    fprintf(stderr, "malloc of %ld failed for %s\n", 
 	    len, purpose);
     exit(SUCCESS);
   }
