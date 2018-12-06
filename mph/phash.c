@@ -1,7 +1,7 @@
 /*ifndef STANDARD
 #include "standard.h"
 #endif /* STANDARD */
-#ifndef PHASH
+
 #include "phash.h"
 #endif /* PHASH */
 #ifndef LOOKUPA
@@ -20,7 +20,7 @@ char *key;
 int   len;
 {
   uint32_t rsl, val = lookup(key, len, 0x9e3779b9);
-  rsl = ((val>>27)^tab[val&0x1f]);
+  rsl = ((val>>27)^tab[val&0x1f]);//val mod 2^5 -1
   return rsl;
 }
 

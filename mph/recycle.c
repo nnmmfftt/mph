@@ -13,18 +13,13 @@ This also decreases memory fragmentation, and freeing structures
 --------------------------------------------------------------------
 */
 
-#ifndef STANDARD
+#include <stdlib.h>
+#include <memory.h>
 #include "standard.h"
-#endif
-#ifndef RECYCLE
-# include "recycle.h"
-#endif
-#include<stdlib.h>
-#include<memory.h>
+#include "recycle.h"
 
-reroot *remkroot(size)
-size_t  size;
-{
+
+reroot *remkroot(size_t size){
    reroot *r = (reroot *)remalloc(sizeof(reroot), "recycle.c, root");
    r->list = (recycle *)0;
    r->trash = (recycle *)0;
@@ -34,9 +29,7 @@ size_t  size;
    return r;
 }
 
-void  refree(r)
-struct reroot *r;
-{
+void  refree(reroot *r){
    recycle *temp;
    if (temp = r->list) while (r->list)
    {
@@ -49,9 +42,7 @@ struct reroot *r;
 }
 
 /* to be called from the macro renew only */
-char  *renewx(r)
-struct reroot *r;
-{
+char  *renewx(reroot *r){
    recycle *temp;
    if (r->trash)
    {  /* pull a node off the trash heap */
@@ -73,10 +64,7 @@ struct reroot *r;
    return (char *)temp;
 }
 
-char   *remalloc(len, purpose)
-size_t  len;
-char   *purpose;
-{
+char   *remalloc(size_t len,char *purpose){
   char *x = (char *)malloc(len);
   if (!x)
   {

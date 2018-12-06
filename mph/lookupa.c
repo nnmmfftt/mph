@@ -5,12 +5,8 @@ Use this code however you wish.  Public Domain.  No warranty.
 Source is http://burtleburtle.net/bob/c/lookupa.c
 --------------------------------------------------------------------
 */
-#ifndef STANDARD
 #include "standard.h"
-#endif
-#ifndef LOOKUPA
 #include "lookupa.h"
-#endif
 
 /*
 --------------------------------------------------------------------
@@ -43,10 +39,10 @@ mix() was built out of 36 single-cycle latency instructions in a
   a -= b; a -= c; a ^= (c>>13); \
   b -= c; b -= a; b ^= (a<<8); \
   c -= a; c -= b; c ^= (b>>13); \
-  a -= b; a -= c; a ^= (c>>12);  \
+  a -= b; a -= c; a ^= (c>>12); \
   b -= c; b -= a; b ^= (a<<16); \
   c -= a; c -= b; c ^= (b>>5); \
-  a -= b; a -= c; a ^= (c>>3);  \
+  a -= b; a -= c; a ^= (c>>3); \
   b -= c; b -= a; b ^= (a<<10); \
   c -= a; c -= b; c ^= (b>>15); \
 }
@@ -79,10 +75,12 @@ acceptable.  Do NOT use for cryptographic purposes.
 --------------------------------------------------------------------
 */
 
-uint32_t lookup( k, length, level)
-register uint8_t *k;        /* the key */
-register uint32_t  length;   /* the length of the key */
-register uint32_t  level;    /* the previous hash, or an arbitrary value */
+uint32_t lookup(register uint8_t *k, register uint32_t length,register uint32_t level){
+/**
+ * register uint8_t *k;                    //the key
+ * register uint32_t  length;              //the length of the key
+ * register uint32_t  level;               //the previous hash, or an arbitrary value
+ **/
 {
    register uint32_t a,b,c,len;
 
@@ -163,13 +161,13 @@ Use to detect changes between revisions of documents, assuming nobody
 is trying to cause collisions.  Do NOT use for cryptography.
 --------------------------------------------------------------------
 */
-void  checksum( k, len, state)
-register uint8_t *k;
-register uint32_t  len;
-register uint32_t *state;
-{
+void  checksum(register uint8_t *k, register uint32_t len, register uint32_t *state){
+/**
+ * register uint8_t *k;
+ * register uint32_t  len;
+ * register uint32_t *state;
+ **/
    register uint32_t a,b,c,d,e,f,g,h,length;
-
    /* Use the length and level; add in the golden ratio. */
    length = len;
    a=state[0]; b=state[1]; c=state[2]; d=state[3];

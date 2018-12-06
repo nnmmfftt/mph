@@ -13,13 +13,9 @@ This also decreases memory fragmentation, and freeing all structures
 --------------------------------------------------------------------
 */
 
-#ifndef STANDARD
+
 #include "standard.h"
-#endif
-
-#ifndef RECYCLE
-#define RECYCLE
-
+#include "recycle.h"
 #define RESTART    0
 #define REMAX      32000
 

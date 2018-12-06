@@ -7,13 +7,8 @@ Source is http://burtleburtle.net/bob/c/lookupa.h
 ------------------------------------------------------------------------------
 */
 
-#ifndef STANDARD
 #include "standard.h"
-#endif
-
-#ifndef LOOKUPA
-#define LOOKUPA
-
+#include "lookupa.h"
 #define CHECKSTATE 8
 #define hashsize(n) ((uint32_t)1<<(n))
 #define hashmask(n) (hashsize(n)-1)
@@ -21,4 +16,3 @@ Source is http://burtleburtle.net/bob/c/lookupa.h
 uint32_t  lookup(/*_ uint8_t *k, uint32_t length, uint32_t level _*/);
 void checksum(/*_ uint8_t *k, uint32_t length, uint32_t *state _*/);
 
-#endif /* LOOKUPA */

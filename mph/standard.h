@@ -3,16 +3,10 @@
 Standard definitions and types, Bob Jenkins
 ------------------------------------------------------------------------------
 */
-#ifndef STANDARD
-# define STANDARD
-# ifndef STDIO
+
 #  include <stdio.h>
-#  define STDIO
-# endif
-# ifndef STDDEF
 #  include <stddef.h>
-#  define STDDEF
-# endif
+
 typedef  unsigned long long  uint64_t;
 #define UB8MAXVAL 0xffffffffffffffffLL
 #define UB8BITS 64

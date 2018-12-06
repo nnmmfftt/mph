@@ -4,15 +4,10 @@ Test a perfect hash.
 By Bob Jenkins.  Public Domain.
 ----------------------------------------------------------------------------
 */
-#ifndef STANDARD
+
 #include "standard.h"
-#endif
-#ifndef RECYCLE
 #include "recycle.h"
-#endif
-#ifndef PHASH
 #include "phash.h"
-#endif
 
 /* user directives: perfect hash? minimal perfect hash? input is an int? */
 struct hashform
@@ -38,12 +33,13 @@ struct key
 typedef  struct key  key;
 
 /* get the list of keys */
-static void getkeys(keys, nkeys, textroot, keyroot)
-key    **keys;        /* list of all keys */
-uint32_t     *nkeys;       /* number of keys */
-reroot  *textroot;    /* get space to store key text */
-reroot  *keyroot;     /* get space for keys */
-{
+static void getkeys(key **keys, uint32_t *nkeys, reroot *textroot, reroot *keyroot){
+/**
+ * key    **keys;                                 //list of all keys
+ * uint32_t     *nkeys;                           //number of keys
+ * reroot  *textroot;                             //get space to store key text
+ * reroot  *keyroot;                              //get space for keys
+ **/
   key  *mykey;
   char *mytext;
   mytext = (char *)renew(textroot);
@@ -69,8 +65,7 @@ reroot  *keyroot;     /* get space for keys */
 Read in the keys, find the hash, and write the .c and .h files
 ------------------------------------------------------------------------------
 */
-void driver(form)
-hashform *form;
+void driver(hashform *form)
 {
   uint32_t     nkeys;      /* number of keys */
   key    *keys;       /* head of list of keys */
@@ -137,10 +132,11 @@ void usage_error()
   exit(SUCCESS);
 }
 
-int main(argc, argv)
-int    argc;
-char **argv;
-{
+int main(int argc, char ** argv){
+/**
+ * int    argc;
+ * char **argv;
+ **/
   hashform  form;
   char     *c;
   int       mode_given = 0;
